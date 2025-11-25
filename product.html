@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Товар</title>
+    <title>Деталі курсу — Доп.Заняття</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-     <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
     <!-- Навігація -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <i class="bi bi-shop"></i> Мій Магазин
+            <a class="navbar-brand fw-bold" href="index.html">
+                <i class="bi bi-mortarboard"></i> Доп.Заняття
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -24,11 +24,21 @@
                         <a class="nav-link" href="index.html">Головна</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="products.html">Каталог</a>
+                        <a class="nav-link" href="products.html">Курси</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="schedule.html">
+                            <i class="bi bi-calendar3"></i> Розклад
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile.html">
+                            <i class="bi bi-person-circle"></i> Мій кабінет
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="cart.html">
-                            <i class="bi bi-cart3"></i> Кошик
+                            <i class="bi bi-cart3"></i> Записи
                             <span class="badge bg-danger" id="cart-count">0</span>
                         </a>
                     </li>
@@ -37,31 +47,74 @@
         </div>
     </nav>
 
-    <!-- Деталі товару -->
+    <!-- Деталі курсу -->
     <section class="py-5">
         <div class="container">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html">Головна</a></li>
-                    <li class="breadcrumb-item"><a href="products.html">Каталог</a></li>
-                    <li class="breadcrumb-item active" id="breadcrumb-title">Товар</li>
+                    <li class="breadcrumb-item"><a href="products.html">Курси</a></li>
+                    <li class="breadcrumb-item active" id="breadcrumb-title">Деталі курсу</li>
                 </ol>
             </nav>
 
             <div class="row" id="product-details">
-                <!-- Деталі товару будуть додані через JavaScript -->
+                <!-- Деталі курсу будуть додані через JavaScript -->
+                <!-- Якщо JS вимкнено — показати базову заглушку -->
+                <div class="col-12">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="row g-0 align-items-center">
+                            <div class="col-md-5">
+                                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&h=800&fit=crop" class="img-fluid rounded-start" alt="Курс — зображення">
+                            </div>
+                            <div class="col-md-7">
+                                <div class="card-body">
+                                    <h3 class="card-title fw-bold" id="fallback-title">Інтенсив: Підготовка до ЗНО з математики</h3>
+                                    <p class="text-muted small mb-2" id="fallback-meta">Рівень: Поглиблений · Тривалість: 40 год · Формат: Онлайн</p>
+                                    <p class="card-text mb-3" id="fallback-desc">Практичні заняття, розбір тестових задач, домашні завдання з перевіркою. Підтримка викладача між заняттями.</p>
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="fs-4 fw-bold text-primary">2 400 грн</div>
+                                        <button class="btn btn-primary btn-lg add-to-cart" data-id="course-fallback">Записатися</button>
+                                        <a href="schedule.html" class="btn btn-outline-secondary">Переглянути розклад</a>
+                                    </div>
+                                    <p class="mt-3 mb-0 small text-muted">Питання? Пишіть: hello@dop.zanyattya.ua</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Футер -->
-    <footer class="bg-dark text-white text-center py-3 mt-5">
+    <footer class="bg-dark text-white text-center py-4 mt-5">
         <div class="container">
-            <p class="mb-0">&copy; 2024 Мій Магазин. Всі права захищені.</p>
+            <div class="row mb-3">
+                <div class="col-md-4 mb-2">
+                    <h6 class="fw-bold">Про школу</h6>
+                    <p class="small text-white-50 mb-0">Онлайн заняття, підготовка до ЗНО та підтримка в навчанні.</p>
+                </div>
+                <div class="col-md-4 mb-2">
+                    <h6 class="fw-bold">Контакти</h6>
+                    <p class="small text-white-50 mb-0"><i class="bi bi-telephone"></i> +38 (050) 123-45-67</p>
+                    <p class="small text-white-50 mb-0"><i class="bi bi-envelope"></i> hello@dop.zanyattya.ua</p>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="fw-bold">Слідкуйте</h6>
+                    <div class="d-flex gap-2 justify-content-center justify-content-md-start">
+                        <a href="#" class="btn btn-outline-light btn-sm"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="btn btn-outline-light btn-sm"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="btn btn-outline-light btn-sm"><i class="bi bi-telegram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-white-50 small">&copy; 2025 Доп.Заняття. Всі права захищені.</div>
         </div>
     </footer>
 
-    <script src="scripts/https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Скрипти -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="scripts/cart.js"></script>
     <script src="scripts/product.js"></script>
 </body>
