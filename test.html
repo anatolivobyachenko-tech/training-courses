@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Тест</title>
+</head>
+<body>
+    <h1>Тест URL параметрів</h1>
+    <p>ID з URL: <span id="url-id">не знайдено</span></p>
+    
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+        document.getElementById('url-id').textContent = id || 'не передано';
+        
+        console.log('URL:', window.location.href);
+        console.log('Search:', window.location.search);
+        console.log('ID:', id);
+    </script>
+</body>
+</html>

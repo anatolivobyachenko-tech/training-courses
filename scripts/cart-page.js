@@ -1,5 +1,9 @@
 // Відображення кошика на сторінці
 function displayCart() {
+    console.log('displayCart() викликана')
+    console.log('cart.items:', cart.items)
+    console.log('cart.getItemCount():', cart.getItemCount())
+    
     const cartContent = document.querySelector('#cart-content')
     const emptyCart = document.querySelector('#empty-cart')
     const cartSummary = document.querySelector('#cart-summary')
@@ -32,7 +36,7 @@ function displayCart() {
             <div class="list-group-item">
                 <div class="row align-items-center">
                     <div class="col-md-2">
-                        <img src="img/${item.image}" class="img-fluid rounded" alt="${item.title}"
+                        <img src="${item.image}" class="img-fluid rounded" alt="${item.title}"
                              onerror="this.src='https://via.placeholder.com/100x100?text=Немає+зображення'">
                     </div>
                     <div class="col-md-4">
@@ -141,4 +145,19 @@ if (clearCartBtn) {
 }
 
 // Ініціалізація сторінки кошика
-displayCart()
+console.log('=== ІНІЦІАЛІЗАЦІЯ CART-PAGE ===');
+console.log('cart об\'єкт:', typeof cart !== 'undefined' ? cart : 'undefined');
+console.log('cart.items:', typeof cart !== 'undefined' ? cart.items : 'undefined');
+
+// Чекаємо, поки сторінка повністю завантажиться
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOMContentLoaded - викликаю displayCart()');
+        displayCart();
+    });
+} else {
+    console.log('DOM вже завантажений - викликаю displayCart()');
+    displayCart();
+}
+
+console.log('=== ІНІЦІАЛІЗАЦІЯ ЗАВЕРШЕНА ===')

@@ -19,7 +19,7 @@ function getCardHTML(product) {
     return `
         <div class="col-md-4 mb-4">
             <div class="card h-100 product-card">
-                <img src="img/${product.image}" class="card-img-top" alt="${product.title}"
+                <img src="${product.image}" class="card-img-top" alt="${product.title}"
                      onerror="this.src='https://via.placeholder.com/300x200?text=Немає+зображення'">
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">${product.title}</h5>
@@ -29,7 +29,7 @@ function getCardHTML(product) {
                         <div class="d-flex gap-2">
                             <button class="btn btn-primary flex-grow-1 add-to-cart-btn" 
                                     data-product='${JSON.stringify(product)}'>
-                                <i class="bi bi-cart-plus"></i> Купити
+                                <i class="bi bi-cart-plus"></i> Записатися
                             </button>
                             <a href="product.html?id=${product.id}" class="btn btn-outline-primary">
                                 <i class="bi bi-eye"></i>
@@ -44,7 +44,7 @@ function getCardHTML(product) {
 
 // Відображення товарів на сторінці
 function displayProducts(products) {
-    const productsList = document.querySelector('#products-list')
+    const productsList = document.querySelector('#products-list') || document.querySelector('#courses-list')
     if (!productsList) return
 
     productsList.innerHTML = ''

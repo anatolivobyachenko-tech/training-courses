@@ -29,8 +29,8 @@ function displayProductDetails(product) {
     if (!product) {
         productDetails.innerHTML = `
             <div class="col-12 text-center py-5">
-                <h3>Товар не знайдено</h3>
-                <a href="products.html" class="btn btn-primary mt-3">Повернутися до каталогу</a>
+                <h3>Курс не знайдено</h3>
+                <a href="courses.html" class="btn btn-primary mt-3">Повернутися до каталогу</a>
             </div>
         `
         return
@@ -42,55 +42,59 @@ function displayProductDetails(product) {
     }
 
     // Оновлюємо title сторінки
-    document.title = `${product.title} - Мій Магазин`
+    document.title = `${product.title} - Доп.Заняття`
 
-    // Відображаємо деталі товару
-    productDetails.innerHTML = `
-        <div class="col-md-6">
-            <img src="img/${product.image}" class="img-fluid rounded" alt="${product.title}"
-                 onerror="this.src='https://via.placeholder.com/500x500?text=Немає+зображення'">
-        </div>
-        <div class="col-md-6">
-            <h1 class="mb-3">${product.title}</h1>
-            <p class="text-muted mb-3">
-                <i class="bi bi-tag"></i> ${product.category || 'Без категорії'}
-            </p>
-            <p class="lead mb-4">${product.fullDescription || product.description}</p>
-            
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h3 class="text-primary mb-3">${product.price} грн</h3>
-                    <div class="d-grid gap-2">
-                        <button class="btn btn-primary btn-lg" id="add-to-cart-btn" 
-                                data-product='${JSON.stringify(product)}'>
-                            <i class="bi bi-cart-plus"></i> Додати до кошика
-                        </button>
-                        <a href="products.html" class="btn btn-outline-secondary">
-                            <i class="bi bi-arrow-left"></i> Повернутися до каталогу
-                        </a>
-                    </div>
-                </div>
-            </div>
+    // Оновлюємо основні елементи
+    const productTitle = document.querySelector('#product-title')
+    if (productTitle) productTitle.textContent = product.title
 
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Характеристики</h5>
-                    <ul class="list-unstyled mb-0">
-                        <li><i class="bi bi-check-circle text-success"></i> Офіційна гарантія</li>
-                        <li><i class="bi bi-check-circle text-success"></i> Безкоштовна доставка</li>
-                        <li><i class="bi bi-check-circle text-success"></i> Обмін та повернення</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    `
+    const categoryBadge = document.querySelector('#category-badge')
+    if (categoryBadge) categoryBadge.textContent = product.category || 'Без категорії'
 
-    // Додаємо обробник для кнопки "Додати до кошика"
+    const levelBadge = document.querySelector('#level-badge')
+    if (levelBadge) levelBadge.textContent = product.level || 'Рівень не вказано'
+
+    const productDescription = document.querySelector('#product-description')
+    if (productDescription) productDescription.textContent = product.description || 'Опис недоступний'
+
+    const fullDescription = document.querySelector('#full-description')
+    if (fullDescription) fullDescription.textContent = product.fullDescription || product.description
+
+    const productPrice = document.querySelector('#product-price')
+    if (productPrice) productPrice.textContent = `${product.price} грн`
+
+    const teacherName = document.querySelector('#teacher-name')
+    if (teacherName) teacherName.textContent = product.teacher || 'Викладач'
+
+    // Оновлюємо інформацію про курс в карті "Про курс"
+    const aboutCourseCard = document.querySelector('#product-details .col-md-5 .card')
+    if (aboutCourseCard) {
+        const aboutCourseElement = aboutCourseCard.querySelector('.card-body')
+        if (aboutCourseElement) {
+            aboutCourseElement.innerHTML = `
+                <h5 class="card-title"><i class="bi bi-info-circle"></i> Про курс</h5>
+                <ul class="list-unstyled mb-0">
+                    <li class="mb-2"><i class="bi bi-check-circle text-success"></i> <strong>Рівень:</strong> ${product.level || 'Не вказано'}</li>
+                    <li class="mb-2"><i class="bi bi-check-circle text-success"></i> <strong>Тривалість:</strong> ${product.duration || 'Не вказано'}</li>
+                    <li class="mb-2"><i class="bi bi-check-circle text-success"></i> <strong>Формат:</strong> ${product.format || 'Онлайн'}</li>
+                    <li class="mb-2"><i class="bi bi-check-circle text-success"></i> <strong>Викладач:</strong> ${product.teacher || 'Призначено'}</li>
+                    <li><i class="bi bi-check-circle text-success"></i> <strong>Статус:</strong> ${product.open ? 'Набір відкритий' : 'Набір закритий'}</li>
+                </ul>
+            `
+        }
+    }
+
+    // Оновлюємо зображення
+    const productImage = document.querySelector('#product-details img')
+    if (productImage) {
+        productImage.src = product.image
+        productImage.alt = product.title
+    }
+
+    // Додаємо обробник для кнопки "Записатися"
     const addToCartBtn = document.querySelector('#add-to-cart-btn')
     if (addToCartBtn) {
         addToCartBtn.addEventListener('click', function(event) {
-            const productData = event.target.getAttribute('data-product')
-            const product = JSON.parse(productData)
             cart.addItem(product)
         })
     }
@@ -98,19 +102,23 @@ function displayProductDetails(product) {
 
 // Ініціалізація сторінки товару
 const productId = getProductIdFromURL()
+console.log('Product ID from URL:', productId)
 
 if (productId) {
     getProducts().then(function(products) {
+        console.log('Products loaded:', products.length)
         const product = findProductById(products, productId)
+        console.log('Found product:', product)
         displayProductDetails(product)
     })
 } else {
     // Якщо ID не вказано, показуємо помилку
+    console.log('No product ID in URL')
     const productDetails = document.querySelector('#product-details')
     productDetails.innerHTML = `
         <div class="col-12 text-center py-5">
-            <h3>Товар не знайдено</h3>
-            <a href="products.html" class="btn btn-primary mt-3">Повернутися до каталогу</a>
+            <h3>Курс не знайдено</h3>
+            <a href="courses.html" class="btn btn-primary mt-3">Повернутися до каталогу</a>
         </div>
     `
 }

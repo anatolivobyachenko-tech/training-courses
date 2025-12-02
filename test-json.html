@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест завантаження JSON</title>
+</head>
+<body>
+    <h1>Тест завантаження JSON</h1>
+    <div id="result"></div>
+    
+    <script>
+        async function testFetch() {
+            try {
+                const response = await fetch('products.json');
+                const data = await response.json();
+                document.getElementById('result').innerHTML = `
+                    <p>✓ JSON завантажено успішно!</p>
+                    <p>Кількість курсів: ${data.length}</p>
+                    <p>Перший курс: ${data[0].title}</p>
+                    <pre>${JSON.stringify(data[0], null, 2)}</pre>
+                `;
+            } catch (error) {
+                document.getElementById('result').innerHTML = `
+                    <p>✗ Помилка: ${error.message}</p>
+                    <pre>${error.stack}</pre>
+                `;
+            }
+        }
+        testFetch();
+    </script>
+</body>
+</html>

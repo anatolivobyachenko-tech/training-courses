@@ -3,7 +3,9 @@ class ShoppingCart {
     constructor() {
         this.items = {}
         this.total = 0
+        console.log('ShoppingCart конструктор викликаний')
         this.loadCartFromCookies()
+        console.log('После loadCartFromCookies, items:', this.items)
         this.updateCartCount()
     }
 
@@ -82,18 +84,50 @@ class ShoppingCart {
         })
     }
 
-    // Збереження кошика в cookies
+    // Збереження кошика в localStorage (замість cookies для більш надійного зберігання)
     saveCartToCookies() {
-        const cartJSON = JSON.stringify(this.items)
-        document.cookie = `cart=${cartJSON}; max-age=${60 * 60 * 24 * 7}; path=/`
+        try {
+            const cartJSON = JSON.stringify(this.items)
+            localStorage.setItem('cart', cartJSON)
+            console.log('Кошик збережено в localStorage')
+        } catch (error) {
+            console.error('Помилка при збереженні кошика:', error)
+        }
     }
 
-    // Завантаження кошика з cookies
+    // Завантаження кошика з localStorage (тепер основне сховище)
     loadCartFromCookies() {
-        const cartCookie = getCookieValue('cart')
-        if (cartCookie && cartCookie !== '') {
-            this.items = JSON.parse(cartCookie)
-            this.calculateTotal()
+        try {
+            // Спочатку спробуємо завантажити з localStorage
+            let cartData = localStorage.getItem('cart')
+            console.log('Завантажено з localStorage:', cartData)
+            
+            if (cartData) {
+                this.items = JSON.parse(cartData)
+                this.calculateTotal()
+                console.log('Кошик завантажено з localStorage:', this.items)
+                return
+            }
+            
+            // Якщо нема в localStorage, спробуємо з cookies (для сумісності)
+            const cartCookie = getCookieValue('cart')
+            console.log('Завантажено з cookies:', cartCookie)
+            
+            if (cartCookie && cartCookie !== '') {
+                const decodedCookie = decodeURIComponent(cartCookie)
+                this.items = JSON.parse(decodedCookie)
+                this.calculateTotal()
+                // Перенесемо в localStorage
+                localStorage.setItem('cart', JSON.stringify(this.items))
+                console.log('Кошик перенесено з cookies в localStorage:', this.items)
+                return
+            }
+            
+            console.log('Кошик не знайдено ні в localStorage ні в cookies')
+        } catch (error) {
+            console.error('Помилка при завантаженні кошика:', error)
+            this.items = {}
+            this.total = 0
         }
     }
 
@@ -115,12 +149,16 @@ class ShoppingCart {
 
 // Функція для отримання значення cookie
 function getCookieValue(name) {
-    const cookies = document.cookie.split('; ')
-    for (let cookie of cookies) {
-        const [cookieName, cookieValue] = cookie.split('=')
-        if (cookieName === name) {
-            return cookieValue
+    try {
+        const cookies = document.cookie.split('; ')
+        for (let cookie of cookies) {
+            const [cookieName, cookieValue] = cookie.split('=')
+            if (cookieName === name && cookieValue) {
+                return cookieValue
+            }
         }
+    } catch (error) {
+        console.error('Помилка при отриманні cookie:', error)
     }
     return null
 }
