@@ -3,16 +3,31 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    --bg-1: #0f172a; /* deep navy */
+    --bg-2: #0b1220; /* darker */
+    --accent: #7c5cff; /* violet accent */
+    --accent-2: #00d4ff; /* cyan accent */
+    --muted: #94a3b8;
+    --card-bg: rgba(255,255,255,0.02);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    color: #e6eef8;
+    background: radial-gradient(1200px 600px at 10% 10%, rgba(124,92,255,0.08), transparent),
+                linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
+    background-attachment: fixed;
 }
 
 footer {
     margin-top: auto;
+    color: var(--muted);
 }
 
 /* Стилі для карток товарів */
 .product-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid #dee2e6;
+    transition: transform 0.28s cubic-bezier(.2,.9,.2,1), box-shadow 0.28s ease;
+    border: 1px solid rgba(255,255,255,0.04);
+    background: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
 }
 
 .product-card:hover {
@@ -23,13 +38,15 @@ footer {
 .product-card img {
     height: 200px;
     object-fit: cover;
-    border-bottom: 1px solid #dee2e6;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
 }
 
 /* Стилі для героя */
 .hero-section {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, rgba(124,92,255,0.15), rgba(0,212,255,0.06));
     color: white;
+    padding: 3.5rem 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
 }
 
 .hero-section h1 {
@@ -39,6 +56,10 @@ footer {
 .hero-section .btn {
     padding: 12px 30px;
     font-size: 1.1rem;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    border: none;
+    color: white;
+    box-shadow: 0 6px 20px rgba(124,92,255,0.12);
 }
 
 /* Стилі для навігації */
@@ -53,7 +74,7 @@ footer {
 }
 
 .nav-link:hover {
-    color: #ffc107 !important;
+    color: var(--accent-2) !important;
 }
 
 /* Стилі для кошика */
@@ -99,12 +120,17 @@ footer {
 
 /* Анімація для кнопок */
 .btn {
-    transition: all 0.3s ease;
+    transition: transform 0.22s ease, box-shadow 0.22s ease, opacity 0.22s ease;
+    border-radius: 10px;
+    padding: 10px 16px;
+    background: rgba(255,255,255,0.03);
+    color: white;
 }
 
 .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px) scale(1.01);
+    box-shadow: 0 8px 30px rgba(2,6,23,0.5);
+    opacity: 0.98;
 }
 
 /* Стилі для breadcrumb */
@@ -129,4 +155,43 @@ footer {
 /* Стилі для порожнього кошика */
 #empty-cart i {
     font-size: 5rem;
+}
+
+/* Accent helpers */
+.accent-glow {
+    color: var(--accent);
+    text-shadow: 0 6px 20px rgba(124,92,255,0.12);
+}
+
+/* subtle focus outlines for accessibility */
+a:focus, .btn:focus, .form-control:focus, .form-select:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(124,92,255,0.08);
+}
+
+/* Profile page — make text lighter for better contrast on dark background */
+.profile-page {
+    color: #f1f7ff;
+}
+.profile-page .text-muted {
+    color: rgba(241,247,255,0.75) !important;
+}
+.profile-page p,
+.profile-page .small,
+.profile-page li,
+.profile-page .card-text,
+.profile-page .list-unstyled a {
+    color: rgba(241,247,255,0.88);
+}
+.profile-page .card,
+.profile-page .product-card {
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border: 1px solid rgba(255,255,255,0.04);
+}
+.profile-page h4, .profile-page h5, .profile-page h6 {
+    color: #ffffff;
+}
+.profile-page .btn.btn-outline-light {
+    color: #f8fbff;
+    border-color: rgba(255,255,255,0.08);
 }
