@@ -167,7 +167,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- пагінацію/кнопки видалено -->
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
             </div>
         </div>
     </section>
@@ -221,24 +223,55 @@
     <script src="scripts/cart.js"></script>
     <script src="scripts/script.js"></script>
     <script>
-        // Ініціалізація Swiper для відгуків — автоскрол раз на 4 секунди
-        const swiper = new Swiper('.reviewsSwiper', {
-            slidesPerView: 1,
-            spaceBetween: 20,
-            loop: true,
-            autoplay: {
-                delay: 4000,
-                disableOnInteraction: false,
-            },
-            breakpoints: {
-                768: {
-                    slidesPerView: 2,
-                },
-                1024: {
-                    slidesPerView: 3,
+        // Надійна ініціалізація Swiper для відгуків — автоскрол + спостереження + оновлення при зміні виду
+        (function() {
+            if (typeof Swiper === 'undefined') return
+
+            let reviewsSwiper = null
+
+            function createReviewsSwiper() {
+                try {
+                    // Якщо вже створений — оновлюємо
+                    if (reviewsSwiper) {
+                        try { reviewsSwiper.destroy(true, true) } catch(e) {}
+                        reviewsSwiper = null
+                    }
+
+                    reviewsSwiper = new Swiper('.reviewsSwiper', {
+                        slidesPerView: 1,
+                        spaceBetween: 20,
+                        loop: true,
+                        autoplay: { delay: 4000, disableOnInteraction: false },
+                        pagination: { el: '.reviewsSwiper .swiper-pagination', clickable: true },
+                        navigation: { nextEl: '.reviewsSwiper .swiper-button-next', prevEl: '.reviewsSwiper .swiper-button-prev' },
+                        breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } },
+                        lazy: { loadPrevNext: true },
+                        observer: true,
+                        observeParents: true,
+                        // трішки підвищує чутливість при drag
+                        touchRatio: 1,
+                        simulateTouch: true
+                    })
+
+                    // Коли все готово — гарантуємо оновлення
+                    setTimeout(() => { try { reviewsSwiper.update() } catch(e){} }, 200)
+                    setTimeout(() => { try { reviewsSwiper.update() } catch(e){} }, 800)
+                } catch (e) {
+                    console.warn('reviewsSwiper create error:', e)
                 }
             }
-        });
+
+            // Ініціалізуємо при load (щоб зображення та шрифти вплинули на розміри до розрахунку)
+            if (document.readyState === 'complete') {
+                createReviewsSwiper()
+            } else {
+                window.addEventListener('load', createReviewsSwiper)
+            }
+
+            // Додаткові заходи: оновлення при resize/visibilitychange
+            window.addEventListener('resize', function() { try { if (reviewsSwiper) reviewsSwiper.update() } catch(e){} })
+            document.addEventListener('visibilitychange', function() { if (!document.hidden) { try { if (reviewsSwiper) reviewsSwiper.update() } catch(e){} } })
+        })()
     </script>
 </body>
 </html>

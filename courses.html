@@ -6,6 +6,7 @@
     <title>Каталог курсів — Доп.Заняття</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
@@ -53,6 +54,18 @@
             <h2 class="mb-4">Каталог курсів</h2>
             <p class="text-muted mb-4">Оберіть курс для перегляду детальної інформації та розкладу занять.</p>
 
+            <!-- Featured courses swiper (карусель) -->
+            <div class="mb-4">
+                <div class="swiper courses-swiper" style="padding-bottom: 1rem;">
+                    <div class="swiper-wrapper">
+                        <!-- slides будуть згенеровані через products.js -->
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+            </div>
+
             <!-- Список курсів -->
             <div class="row g-4" id="courses-list">
                 <!-- Курси будуть завантажені через JavaScript -->
@@ -86,9 +99,83 @@
         </div>
     </footer>
 
+    <!-- Відгуки (також на сторінці Курси) -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5 fw-bold">Відгуки студентів</h2>
+            <div class="swiper reviewsSwiper" style="max-width: 1400px; width: 95%; margin: 0 auto;">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body">
+                                <div class="d-flex gap-1 mb-3">
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                </div>
+                                <p class="card-text mb-3">"Допомогли підготуватися до ЗНО — зрозуміла подача та практичні завдання."</p>
+                                <h6 class="card-title fw-bold mb-1">Олександра, 12 клас</h6>
+                                <small class="text-muted">Підготувала іспит з математики</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body">
+                                <div class="d-flex gap-1 mb-3">
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                </div>
+                                <p class="card-text mb-3">"Чудовий репетитор з англійської — покращив розмовну практику за 2 місяці."</p>
+                                <h6 class="card-title fw-bold mb-1">Максим</h6>
+                                <small class="text-muted">Курс: Розмовна англійська</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body">
+                                <div class="d-flex gap-1 mb-3">
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                </div>
+                                <p class="card-text mb-3">"Зручно: заняття онлайн, матеріали в записі, можна повторити лекцію."</p>
+                                <h6 class="card-title fw-bold mb-1">Наталя</h6>
+                                <small class="text-muted">Курс: Підготовка до контрольних</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
     <!-- Скрипти -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="scripts/cart.js"></script>
     <script src="scripts/products.js"></script>
+    <script>
+        // Ініціалізація Swiper для відгуків на сторінці Курси
+        if (typeof Swiper !== 'undefined') {
+            new Swiper('.reviewsSwiper', {
+                slidesPerView: 1,
+                spaceBetween: 20,
+                loop: true,
+                autoplay: { delay: 4000, disableOnInteraction: false },
+                breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } },
+                pagination: { el: '.reviewsSwiper .swiper-pagination', clickable: true }
+            })
+        }
+    </script>
 </body>
 </html>

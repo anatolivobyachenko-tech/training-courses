@@ -85,10 +85,47 @@ function displayProductDetails(product) {
     }
 
     // Оновлюємо зображення
-    const productImage = document.querySelector('#product-details img')
-    if (productImage) {
-        productImage.src = product.image
-        productImage.alt = product.title
+    // Оновлюємо галерею зображень (якщо є Swiper контейнер)
+    const imagesWrapper = document.querySelector('.productImagesSwiper .swiper-wrapper')
+    if (imagesWrapper) {
+        imagesWrapper.innerHTML = ''
+        // Основне зображення
+        const mainSlide = document.createElement('div')
+        mainSlide.className = 'swiper-slide'
+        mainSlide.innerHTML = `<img src="${product.image}" class="img-fluid rounded" alt="${product.title}" onerror="this.src='https://via.placeholder.com/800x500?text=Немає+зображення'">`
+        imagesWrapper.appendChild(mainSlide)
+
+        // Додатково: якщо є масив зображень (product.images), додаємо їх
+        if (product.images && Array.isArray(product.images)) {
+            product.images.forEach(src => {
+                const slide = document.createElement('div')
+                slide.className = 'swiper-slide'
+                slide.innerHTML = `<img src="${src}" class="img-fluid rounded" alt="${product.title}" onerror="this.src='https://via.placeholder.com/800x500?text=Немає+зображення'">`
+                imagesWrapper.appendChild(slide)
+            })
+        }
+
+        // Ініціалізація Swiper для галереї (якщо доступний)
+        if (typeof Swiper !== 'undefined') {
+            try {
+                new Swiper('.productImagesSwiper', {
+                    slidesPerView: 1,
+                    spaceBetween: 10,
+                    loop: false,
+                    pagination: { el: '.productImagesSwiper .swiper-pagination', clickable: true },
+                    navigation: { nextEl: '.productImagesSwiper .swiper-button-next', prevEl: '.productImagesSwiper .swiper-button-prev' }
+                })
+            } catch (e) {
+                console.warn('Не вдалося ініціалізувати productImagesSwiper:', e)
+            }
+        }
+    } else {
+        // Якщо Swiper контейнера немає, оновлюємо простий img (підтримка старої розмітки)
+        const productImage = document.querySelector('#product-details img')
+        if (productImage) {
+            productImage.src = product.image
+            productImage.alt = product.title
+        }
     }
 
     // Додаємо обробник для кнопки "Записатися"
