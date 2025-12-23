@@ -10,10 +10,10 @@ async function getProducts() {
     }
 }
 
-// Функція для створення HTML картки товару
-function getCardHTML(product) {
+// Функція для створення HTML картки товару для swiper
+function getSwiperCardHTML(product) {
     return `
-        <div class="col-md-4 mb-4">
+        <div class="swiper-slide">
             <div class="card h-100 product-card">
                 <img src="${product.image}" class="card-img-top" alt="${product.title}" 
                      onerror="this.src='https://via.placeholder.com/300x200?text=Немає+зображення'">

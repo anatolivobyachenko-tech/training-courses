@@ -12,7 +12,7 @@ async function loadProducts() {
 
 // Показати товари
 function displayProducts(products) {
-    const container = document.getElementById('products-list');
+    const container = document.getElementById('products-list') || document.getElementById('courses-list');
     if (!container) return;
 
     container.innerHTML = '';
@@ -104,7 +104,10 @@ async function init() {
     console.log('Товари:', products.length);
 
     if (products.length === 0) {
-        document.getElementById('products-list').innerHTML = '<p class="text-danger">Помилка завантаження товарів</p>';
+        const container = document.getElementById('products-list') || document.getElementById('courses-list');
+        if (container) {
+            container.innerHTML = '<p class="text-danger">Помилка завантаження товарів</p>';
+        }
         return;
     }
 
