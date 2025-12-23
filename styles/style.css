@@ -318,6 +318,17 @@ section.bg-light {
     color: #e6eef8;
 }
 
+/* Популярні курси — padding для карток */
+#courses-list .swiper-slide {
+     padding: 45px 45px;
+}
+
+/* Популярні курси — приховати стрілки Swiper */
+.courses-swiper .swiper-button-prev,
+.courses-swiper .swiper-button-next {
+    display: none !important;
+}
+
 /* Icon color улучшение */
 .bi {
     color: inherit;
