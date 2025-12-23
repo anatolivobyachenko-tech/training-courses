@@ -57,60 +57,35 @@
                 <aside class="col-lg-3 mb-4">
                     <div class="card shadow-sm sticky-top" style="top:20px;">
                         <div class="card-body">
-                            <h5 class="card-title mb-3">Фільтри курсів</h5>
+                            <h5 class="card-title mb-4">
+                                <i class="bi bi-funnel"></i> Фільтри
+                            </h5>
 
-                            <div class="mb-3">
-                                <label class="form-label visually-hidden" for="category-filter">Предмет</label>
+                            <div class="mb-4">
+                                <label class="form-label fw-bold" for="category-filter">Предмет</label>
                                 <select class="form-select" id="category-filter">
-                                    <option value="all">Усі курси</option>
-                                    <option value="math">Математика</option>
-                                    <option value="english">Англійська</option>
-                                    <option value="physics">Фізика</option>
-                                    <option value="programming">Програмування</option>
+                                    <option value="all">Усі предмети</option>
                                 </select>
                             </div>
 
-                            <div class="mb-3">
-                                <label class="form-label visually-hidden" for="level-filter">Рівень</label>
-                                <select class="form-select" id="level-filter">
-                                    <option value="all">Усі рівні</option>
-                                    <option value="beginner">Початковий</option>
-                                    <option value="intermediate">Середній</option>
-                                    <option value="advanced">Поглиблений</option>
-                                </select>
+                            <div class="mb-4">
+                                <label class="form-label fw-bold" for="search-input">Пошук</label>
+                                <input type="text" class="form-control" id="search-input" placeholder="За назвою або викладачем...">
                             </div>
 
-                            <h6 class="mt-3">Сортування</h6>
-                            <div class="mb-3">
-                                <label class="form-label visually-hidden" for="sort-filter">Сортування</label>
+                            <div class="mb-4">
+                                <label class="form-label fw-bold" for="sort-filter">Сортування</label>
                                 <select class="form-select" id="sort-filter">
                                     <option value="default">За популярністю</option>
                                     <option value="price-asc">Ціна: за зростанням</option>
                                     <option value="price-desc">Ціна: за спаданням</option>
-                                    <option value="duration">Тривалість</option>
+                                    <option value="name">За назвою (А-Я)</option>
                                 </select>
                             </div>
 
-                            <h6 class="mt-3">Пошук курсу</h6>
-                            <div class="mb-3">
-                                <input type="text" class="form-control" id="search-input" placeholder="Пошук за назвою або викладачем...">
-                            </div>
-
-                            <h6 class="mt-3">Набір</h6>
-                            <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="in-stock-check">
-                                <label class="form-check-label" for="in-stock-check">Тільки з відкритим набором</label>
-                            </div>
-
-                            <h6 class="mt-3">Ціна (грн)</h6>
-                            <div class="d-flex gap-2 mb-3">
-                                <input type="number" class="form-control" id="price-min" placeholder="мін" min="0">
-                                <input type="number" class="form-control" id="price-max" placeholder="макс" min="0">
-                            </div>
-
-                            <div class="d-grid">
-                                <button id="apply-filters" class="btn btn-primary">Знайти курси</button>
-                            </div>
+                            <button id="reset-filters" class="btn btn-outline-secondary w-100">
+                                <i class="bi bi-arrow-clockwise"></i> Скинути фільтри
+                            </button>
                         </div>
                     </div>
                 </aside>
@@ -118,28 +93,12 @@
                 <!-- Контент: курси -->
                 <main class="col-lg-9">
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <div id="results-info" class="text-muted">Показано всі курси</div>
+                        <div id="results-info" class="text-muted">Завантаження...</div>
                     </div>
 
-                    <!-- Список курсів (збережено id products-list для сумісності зі скриптом) -->
+                    <!-- Список курсів -->
                     <div class="row g-4" id="products-list">
                         <!-- Курси будуть додані через JavaScript -->
-                        <!-- Приклад курсу (можете генерувати динамічно) -->
-                        <div class="col-md-6 col-lg-4">
-                            <div class="card h-100 shadow-sm">
-                                <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=800&h=450&fit=crop" class="card-img-top" alt="Курс">
-                                <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title mb-1">Інтенсив з математики (підготовка до ЗНО)</h5>
-                                    <p class="text-muted mb-2 small">Рівень: Поглиблений · Тривалість: 40 год</p>
-                                    <p class="card-text mb-3">Практичні задачі, розбір тестів і домашні завдання з керівництвом викладача.</p>
-                                    <div class="mt-auto d-flex justify-content-between align-items-center">
-                                        <div class="fw-bold text-primary">2 400 грн</div>
-                                        <button class="btn btn-outline-primary btn-sm add-to-cart" data-id="course-1">Записатися</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- кінець прикладу -->
                     </div>
                 </main>
             </div>
@@ -176,13 +135,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="scripts/cart.js"></script>
     <script src="scripts/products.js"></script>
-    <script>
-        // Залишено існуючі id-поля для сумісності зі scripts/products.js:
-        // #category-filter, #level-filter, #sort-filter, #search-input, #in-stock-check, #price-min, #price-max, #apply-filters, #products-list, #results-info
-        document.getElementById('apply-filters')?.addEventListener('click', () => {
-            // виклик фільтрації — реалізація очікується в scripts/products.js
-            window.updateProducts?.();
-        });
-    </script>
 </body>
 </html>

@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-    <!-- Навігація -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
         <div class="container">
             <a class="navbar-brand fw-bold" href="index.html">
@@ -39,8 +38,6 @@
             </div>
         </div>
     </nav>
-
-    <!-- Hero Section з фоновим зображенням -->
     <section class="hero-section" style="background: linear-gradient(rgba(6, 60, 100, 0.6), rgba(6, 60, 100, 0.6)), url('https://images.unsplash.com/photo-1532619377-7d3f1b0c8e5d?w=1200&h=600&fit=crop') center/cover no-repeat; min-height: 520px; display: flex; align-items: center; color: white;">
         <div class="container text-center">
             <h1 class="display-4 fw-bold mb-3">Онлайн заняття. Додаткова допомога з предметів</h1>
@@ -56,8 +53,6 @@
             <p class="mt-4 small text-white-50">Почни вже сьогодні — перше заняття зі знижкою</p>
         </div>
     </section>
-
-    <!-- Блок переваг (фічі) -->
     <section id="advantages" class="py-5 bg-light">
         <div class="container">
             <h2 class="text-center mb-5 fw-bold">Що ви отримуєте</h2>
@@ -106,8 +101,12 @@
     <section class="py-5">
         <div class="container">
             <h2 class="text-center mb-4 fw-bold">Популярні курси</h2>
-            <div class="row" id="courses-list">
-                <!-- Курси будуть додані через JavaScript -->
+            <div class="swiper courses-swiper" style="padding-bottom: 1rem;">
+                <div class="swiper-wrapper" id="courses-list">
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
             </div>
         </div>
     </section>
@@ -129,7 +128,7 @@
                                     <i class="bi bi-star-fill text-warning"></i>
                                 </div>
                                 <p class="card-text mb-3">"Допомогли підготуватися до ЗНО — зрозуміла подача та практичні завдання."</p>
-                                <h6 class="card-title fw-bold mb-1">Олександра, 12 клас</h6>
+                                <h6 class="card-title fw-bold mb-1">Олександра, 11 клас</h6>
                                 <small class="text-muted">Підготувала іспит з математики</small>
                             </div>
                         </div>
@@ -163,6 +162,86 @@
                                 <p class="card-text mb-3">"Зручно: заняття онлайн, матеріали в записі, можна повторити лекцію."</p>
                                 <h6 class="card-title fw-bold mb-1">Наталя</h6>
                                 <small class="text-muted">Курс: Підготовка до контрольних</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body">
+                                <div class="d-flex gap-1 mb-3">
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                </div>
+                                <p class="card-text mb-3">"Дуже задоволений результатами. Хорошо пояснює складні теми програмування."</p>
+                                <h6 class="card-title fw-bold mb-1">Іван</h6>
+                                <small class="text-muted">Курс: Python базовий</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body">
+                                <div class="d-flex gap-1 mb-3">
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                </div>
+                                <p class="card-text mb-3">"Репетиторка з фізики дуже терпелива і показала мені, як розв'язувати складні задачі."</p>
+                                <h6 class="card-title fw-bold mb-1">Марія, 10 клас</h6>
+                                <small class="text-muted">Курс: Фізика - контрольні</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body">
+                                <div class="d-flex gap-1 mb-3">
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                </div>
+                                <p class="card-text mb-3">"Вчиться онлайн тут супер! Викладачі завжди готові дати додаткові матеріали."</p>
+                                <h6 class="card-title fw-bold mb-1">Анна</h6>
+                                <small class="text-muted">Курс: Українська література</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body">
+                                <div class="d-flex gap-1 mb-3">
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                </div>
+                                <p class="card-text mb-3">"Індивідуальні заняття з математики змінили мою оцінку з 3 на 4+."</p>
+                                <h6 class="card-title fw-bold mb-1">Петро</h6>
+                                <small class="text-muted">Курс: Математика 1 на 1</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body">
+                                <div class="d-flex gap-1 mb-3">
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                </div>
+                                <p class="card-text mb-3">"Хімія вже не така страшна! Дякую викладачу за цікаві пояснення органіки."</p>
+                                <h6 class="card-title fw-bold mb-1">Влада</h6>
+                                <small class="text-muted">Курс: Органічна хімія</small>
                             </div>
                         </div>
                     </div>
@@ -221,6 +300,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="scripts/cart.js"></script>
+    <script src="scripts/products.js"></script>
     <script src="scripts/script.js"></script>
     <script>
         // Надійна ініціалізація Swiper для відгуків — автоскрол + спостереження + оновлення при зміні виду

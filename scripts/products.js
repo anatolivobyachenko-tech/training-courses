@@ -1,222 +1,145 @@
-// Глобальні змінні
-let allProducts = []
-let filteredProducts = []
-
-// Отримання товарів з JSON файлу
-async function getProducts() {
+// Завантажити товари з JSON
+async function loadProducts() {
     try {
-        const response = await fetch('products.json')
-        const products = await response.json()
-        return products
+        const response = await fetch('products.json');
+        const data = await response.json();
+        return data;
     } catch (error) {
-        console.error('Помилка завантаження товарів:', error)
-        return []
+        console.error('Помилка завантаження:', error);
+        return [];
     }
 }
 
-// Функція для створення HTML картки товару
-function getCardHTML(product) {
-    return `
-        <div class="col-md-4 mb-4">
-            <div class="card h-100 product-card">
-                <img src="${product.image}" class="card-img-top" alt="${product.title}"
-                     onerror="this.src='https://via.placeholder.com/300x200?text=Немає+зображення'">
+// Показати товари
+function displayProducts(products) {
+    const container = document.getElementById('products-list');
+    if (!container) return;
+
+    container.innerHTML = '';
+
+    if (products.length === 0) {
+        container.innerHTML = '<div class="col-12"><p class="text-muted">Товари не знайдено</p></div>';
+        return;
+    }
+
+    products.forEach(product => {
+        const card = document.createElement('div');
+        card.className = 'col-md-6 col-lg-4';
+        card.innerHTML = `
+            <div class="card h-100 shadow-sm">
+                <img src="${product.image}" class="card-img-top" alt="${product.title}">
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">${product.title}</h5>
                     <p class="card-text text-muted">${product.description}</p>
+                    <p class="text-muted small"><strong>Викладач:</strong> ${product.teacher}</p>
                     <div class="mt-auto">
                         <p class="h5 text-primary mb-3">${product.price} грн</p>
-                        <div class="d-flex gap-2">
-                            <button class="btn btn-primary flex-grow-1 add-to-cart-btn" 
-                                    data-product='${JSON.stringify(product)}'>
-                                <i class="bi bi-cart-plus"></i> Записатися
-                            </button>
-                            <a href="product.html?id=${product.id}" class="btn btn-outline-primary">
-                                <i class="bi bi-eye"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `
-}
-
-// Відображення товарів на сторінці
-function displayProducts(products) {
-    const productsList = document.querySelector('#products-list') || document.querySelector('#courses-list')
-    if (!productsList) return
-
-    productsList.innerHTML = ''
-    
-    if (products.length === 0) {
-        productsList.innerHTML = '<div class="col-12 text-center"><p class="text-muted">Товари не знайдено</p></div>'
-        return
-    }
-
-    products.forEach(function(product) {
-        productsList.innerHTML += getCardHTML(product)
-    })
-
-    // Додаємо обробники подій для кнопок "Купити"
-    const buyButtons = document.querySelectorAll('.add-to-cart-btn')
-    buyButtons.forEach(function(button) {
-        button.addEventListener('click', addToCart)
-    })
-}
-
-// Функція додавання товару до кошика
-function addToCart(event) {
-    const productData = event.target.closest('.add-to-cart-btn').getAttribute('data-product')
-    const product = JSON.parse(productData)
-    cart.addItem(product)
-}
-
-// Отримання унікальних категорій
-function getCategories(products) {
-    const categories = new Set()
-    products.forEach(product => {
-        if (product.category) {
-            categories.add(product.category)
-        }
-    })
-    return Array.from(categories)
-}
-
-// Заповнення фільтра категорій
-function populateCategoryFilter(categories) {
-    const categoryFilter = document.querySelector('#category-filter')
-    if (!categoryFilter) return
-
-    categories.forEach(category => {
-        const option = document.createElement('option')
-        option.value = category
-        option.textContent = category
-        categoryFilter.appendChild(option)
-    })
-}
-
-// Застосування фільтрів
-function applyFilters() {
-    const categoryFilter = document.querySelector('#category-filter').value
-    const sortFilter = document.querySelector('#sort-filter').value
-    const searchInput = document.querySelector('#search-input').value.toLowerCase()
-
-    // Фільтрація за категорією
-    filteredProducts = allProducts.filter(product => {
-        if (categoryFilter !== 'all' && product.category !== categoryFilter) {
-            return false
-        }
-        return true
-    })
-
-    // Пошук за назвою
-    if (searchInput) {
-        filteredProducts = filteredProducts.filter(product => {
-            return product.title.toLowerCase().includes(searchInput)
-        })
-    }
-
-    // Сортування
-    switch(sortFilter) {
-        case 'price-asc':
-            filteredProducts.sort((a, b) => a.price - b.price)
-            break
-        case 'price-desc':
-            filteredProducts.sort((a, b) => b.price - a.price)
-            break
-        case 'name':
-            filteredProducts.sort((a, b) => a.title.localeCompare(b.title))
-            break
-    }
-
-    displayProducts(filteredProducts)
-}
-
-// Ініціалізація сторінки
-// Ініціалізація Swiper для блоку курсів, якщо присутній
-function initCoursesSwiper(products) {
-    const wrapper = document.querySelector('.courses-swiper .swiper-wrapper')
-    if (!wrapper) return
-
-    // Показуємо перші 8 курсів у каруселі
-    const featured = products.slice(0, 8)
-    wrapper.innerHTML = ''
-    featured.forEach(product => {
-        const slide = document.createElement('div')
-        slide.className = 'swiper-slide'
-        slide.innerHTML = `
-            <div class="card h-100 product-card">
-                <img src="${product.image}" class="card-img-top" alt="${product.title}" onerror="this.src='https://via.placeholder.com/400x250?text=Немає+зображення'">
-                <div class="card-body d-flex flex-column">
-                    <h5 class="card-title">${product.title}</h5>
-                    <p class="card-text text-muted">${product.description}</p>
-                    <div class="mt-auto d-flex gap-2">
-                        <button class="btn btn-primary flex-grow-1 add-to-cart-btn" data-product='${JSON.stringify(product)}'>
+                        <button class="btn btn-primary w-100 add-to-cart-btn" data-product='${JSON.stringify(product)}'>
                             <i class="bi bi-cart-plus"></i> Записатися
                         </button>
-                        <a href="product.html?id=${product.id}" class="btn btn-outline-primary">
-                            <i class="bi bi-eye"></i>
-                        </a>
                     </div>
                 </div>
             </div>
-        `
-        wrapper.appendChild(slide)
-    })
+        `;
+        container.appendChild(card);
+    });
 
-    // Додаємо обробники для кнопок у слайдах
-    const buyButtons = document.querySelectorAll('.courses-swiper .add-to-cart-btn')
-    buyButtons.forEach(function(button) {
-        button.addEventListener('click', addToCart)
-    })
-
-    // Ініціалізація Swiper
-    if (typeof Swiper !== 'undefined') {
-        new Swiper('.courses-swiper', {
-            slidesPerView: 1,
-            spaceBetween: 16,
-            loop: true,
-            pagination: {
-                el: '.courses-swiper .swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.courses-swiper .swiper-button-next',
-                prevEl: '.courses-swiper .swiper-button-prev',
-            },
-            breakpoints: {
-                576: { slidesPerView: 2 },
-                992: { slidesPerView: 3 }
+    // Додай обробники для кнопок
+    document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const product = JSON.parse(e.target.closest('.add-to-cart-btn').getAttribute('data-product'));
+            if (typeof cart !== 'undefined') {
+                cart.addItem(product);
             }
-        })
-    }
+        });
+    });
 }
 
-// Ініціалізація сторінки
-getProducts().then(function(products) {
-    allProducts = products
-    filteredProducts = products
+// Заповнити категорії
+function populateCategories(products) {
+    const select = document.getElementById('category-filter');
+    if (!select) return;
 
-    // Заповнюємо фільтр категорій
-    const categories = getCategories(products)
-    populateCategoryFilter(categories)
+    const categories = new Set();
+    products.forEach(p => {
+        if (p.category) categories.add(p.category);
+    });
 
-    // Відображаємо всі товари
-    displayProducts(products)
+    const sorted = Array.from(categories).sort();
+    sorted.forEach(cat => {
+        const option = document.createElement('option');
+        option.value = cat;
+        option.textContent = cat;
+        select.appendChild(option);
+    });
+}
 
-    // Якщо є Swiper контейнер на сторінці, ініціалізуємо його
-    try {
-        initCoursesSwiper(products)
-    } catch (e) {
-        console.warn('Не вдалося ініціалізувати courses-swiper:', e)
+// Фільтрувати товари
+function applyFilters(allProducts) {
+    const category = document.getElementById('category-filter')?.value || 'all';
+    const search = document.getElementById('search-input')?.value?.toLowerCase() || '';
+    const sort = document.getElementById('sort-filter')?.value || 'default';
+
+    let filtered = allProducts.filter(p => {
+        if (category !== 'all' && p.category !== category) return false;
+        if (search && !p.title.toLowerCase().includes(search) && !p.teacher.toLowerCase().includes(search)) return false;
+        return true;
+    });
+
+    // Сортування
+    if (sort === 'price-asc') filtered.sort((a, b) => a.price - b.price);
+    if (sort === 'price-desc') filtered.sort((a, b) => b.price - a.price);
+    if (sort === 'name') filtered.sort((a, b) => a.title.localeCompare(b.title, 'uk'));
+
+    displayProducts(filtered);
+
+    // Зберегти стан
+    localStorage.setItem('productFilters', JSON.stringify({ category, search, sort }));
+}
+
+// Ініціалізація
+async function init() {
+    console.log('Завантажу товари...');
+    const products = await loadProducts();
+    console.log('Товари:', products.length);
+
+    if (products.length === 0) {
+        document.getElementById('products-list').innerHTML = '<p class="text-danger">Помилка завантаження товарів</p>';
+        return;
     }
 
-    // Додаємо обробники для фільтрів
-    const catFilter = document.querySelector('#category-filter')
-    const sortFilter = document.querySelector('#sort-filter')
-    const searchInput = document.querySelector('#search-input')
-    if (catFilter) catFilter.addEventListener('change', applyFilters)
-    if (sortFilter) sortFilter.addEventListener('change', applyFilters)
-    if (searchInput) searchInput.addEventListener('input', applyFilters)
-})
+    // Заповнити категорії
+    populateCategories(products);
+
+    // Відновити фільтри
+    const saved = JSON.parse(localStorage.getItem('productFilters') || '{}');
+    if (saved.category) document.getElementById('category-filter').value = saved.category;
+    if (saved.search) document.getElementById('search-input').value = saved.search;
+    if (saved.sort) document.getElementById('sort-filter').value = saved.sort;
+
+    // Показати товари з фільтрами
+    if (saved.category || saved.search || saved.sort) {
+        applyFilters(products);
+    } else {
+        displayProducts(products);
+    }
+
+    // Обробники подій
+    document.getElementById('category-filter')?.addEventListener('change', () => applyFilters(products));
+    document.getElementById('search-input')?.addEventListener('input', () => applyFilters(products));
+    document.getElementById('sort-filter')?.addEventListener('change', () => applyFilters(products));
+    document.getElementById('reset-filters')?.addEventListener('click', () => {
+        document.getElementById('category-filter').value = 'all';
+        document.getElementById('search-input').value = '';
+        document.getElementById('sort-filter').value = 'default';
+        localStorage.removeItem('productFilters');
+        displayProducts(products);
+    });
+}
+
+// Запустити при готовності DOM
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+} else {
+    init();
+}
