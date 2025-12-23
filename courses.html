@@ -54,6 +54,34 @@
             <h2 class="mb-4">Каталог курсів</h2>
             <p class="text-muted mb-4">Оберіть курс для перегляду детальної інформації та розкладу занять.</p>
 
+            <!-- Фільтри каталогу -->
+            <form class="row g-3 align-items-end mb-4" id="filters-form" autocomplete="off">
+                <div class="col-md-4">
+                    <label for="category-filter" class="form-label">Категорія</label>
+                    <select class="form-select" id="category-filter">
+                        <option value="all">Всі категорії</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="search-input" class="form-label">Пошук</label>
+                    <input type="text" class="form-control" id="search-input" placeholder="Назва курсу або викладач">
+                </div>
+                <div class="col-md-3">
+                    <label for="sort-filter" class="form-label">Сортувати</label>
+                    <select class="form-select" id="sort-filter">
+                        <option value="default">За замовчуванням</option>
+                        <option value="price-asc">Від дешевих до дорогих</option>
+                        <option value="price-desc">Від дорогих до дешевих</option>
+                        <option value="name">За назвою</option>
+                    </select>
+                </div>
+                <div class="col-md-1 d-grid">
+                    <button type="button" class="btn btn-outline-secondary" id="reset-filters" title="Скинути фільтри">
+                        <i class="bi bi-x-circle"></i>
+                    </button>
+                </div>
+            </form>
+
             <!-- Список курсів -->
             <div class="row g-4" id="courses-list">
                 <!-- Курси будуть завантажені через JavaScript -->

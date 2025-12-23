@@ -1,3 +1,36 @@
+/* Темний фон для фільтрів каталогу курсів */
+#filters-form {
+    background: #181c24;
+    border-radius: 1rem;
+    padding: 1.5rem 1rem 1rem 1rem;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+}
+#filters-form label,
+#filters-form .form-label,
+#filters-form .form-select,
+#filters-form .form-control {
+    color: #f8fafc;
+    background: #232837;
+    border-color: #232837;
+}
+#filters-form .form-select,
+#filters-form .form-control {
+    border-radius: 0.5rem;
+}
+#filters-form .form-control::placeholder {
+    color: #b0b8c9;
+    opacity: 1;
+}
+#filters-form .btn-outline-secondary {
+    color: #f8fafc;
+    border-color: #444a5a;
+    background: #232837;
+}
+#filters-form .btn-outline-secondary:hover {
+    background: #2d3344;
+    border-color: #7c5cff;
+    color: #fff;
+}
 /* Загальні стилі */
 body {
     min-height: 100vh;
