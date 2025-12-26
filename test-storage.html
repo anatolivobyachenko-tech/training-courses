@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Тест localStorage для кошика</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Тест localStorage для кошика</h1>
+        
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Поточний стан localStorage</h5>
+                <p>Ключ 'cart' в localStorage:</p>
+                <pre id="cart-data" class="bg-light p-3">Завантаження...</pre>
+                <button class="btn btn-primary" onclick="showCartData()">Оновити</button>
+                <button class="btn btn-danger" onclick="clearStorage()">Очистити localStorage</button>
+            </div>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Добавити тестовий товар</h5>
+                <button class="btn btn-success" onclick="addTestItem()">Добавити товар</button>
+                <button class="btn btn-info" onclick="addMultipleItems()">Добавити кілька товарів</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Інформація</h5>
+                <ul>
+                    <li>Натиск "Добавити товар" додає тестовий товар до localStorage</li>
+                    <li>Натиск "Оновити" показує поточний вміст localStorage</li>
+                    <li>Перейди на <a href="courses.html">Курси</a> та натисни "Записатися" на будь-якому курсі</li>
+                    <li>Потім перейди на <a href="cart.html">Записи</a> та перевір, чи курси все там</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showCartData() {
+            const cartData = localStorage.getItem('cart');
+            const element = document.getElementById('cart-data');
+            if (cartData) {
+                try {
+                    const parsed = JSON.parse(cartData);
+                    element.textContent = JSON.stringify(parsed, null, 2);
+                } catch (e) {
+                    element.textContent = 'Помилка парсування JSON: ' + e.message + '\n' + cartData;
+                }
+            } else {
+                element.textContent = 'localStorage["cart"] - порожній';
+            }
+        }
+
+        function clearStorage() {
+            if (confirm('Ви впевнені?')) {
+                localStorage.removeItem('cart');
+                showCartData();
+            }
+        }
+
+        function addTestItem() {
+            const testItem = {
+                id: 999,
+                title: "Тестовий курс",
+                description: "Це тестовий курс",
+                price: 1000,
+                image: "https://via.placeholder.com/300x200",
+                category: "Тест",
+                level: "Тестовий",
+                duration: "1 година",
+                format: "Онлайн",
+                teacher: "Тестовий вчитель",
+                open: true,
+                quantity: 1
+            };
+            const current = localStorage.getItem('cart');
+            let items = {};
+            if (current) {
+                items = JSON.parse(current);
+            }
+            items[testItem.id] = testItem;
+            localStorage.setItem('cart', JSON.stringify(items));
+            showCartData();
+        }
+
+        function addMultipleItems() {
+            const items = {};
+            for (let i = 1; i <= 3; i++) {
+                items[i] = {
+                    id: i,
+                    title: "Курс " + i,
+                    description: "Опис курсу " + i,
+                    price: 1000 * i,
+                    image: "https://via.placeholder.com/300x200",
+                    category: "Категорія " + i,
+                    level: "Рівень " + i,
+                    duration: i * 10 + " годин",
+                    format: "Онлайн",
+                    teacher: "Вчитель " + i,
+                    open: true,
+                    quantity: i
+                };
+            }
+            localStorage.setItem('cart', JSON.stringify(items));
+            showCartData();
+        }
+
+        // Показати дані при завантаженні
+        showCartData();
+    </script>
+</body>
+</html>

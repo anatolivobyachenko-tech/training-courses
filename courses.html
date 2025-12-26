@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог курсів — Доп.Заняття</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <!-- Навігація -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <i class="bi bi-mortarboard"></i> Доп.Заняття
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Головна</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="courses.html">Курси</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="schedule.html">
+                            <i class="bi bi-calendar3"></i> Розклад
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile.html">
+                            <i class="bi bi-person-circle"></i> Мій кабінет
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html">
+                            <i class="bi bi-journal-check"></i> Записи
+                            <span class="badge bg-danger" id="cart-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Сторінка: Каталог курсів -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="mb-4">Каталог курсів</h2>
+            <p class="text-muted mb-4">Оберіть курс для перегляду детальної інформації та розкладу занять.</p>
+
+            <!-- Фільтри каталогу -->
+            <form class="row g-3 align-items-end mb-4" id="filters-form" autocomplete="off">
+                <div class="col-md-4">
+                    <label for="category-filter" class="form-label">Категорія</label>
+                    <select class="form-select" id="category-filter">
+                        <option value="all">Всі категорії</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="search-input" class="form-label">Пошук</label>
+                    <input type="text" class="form-control" id="search-input" placeholder="Назва курсу або викладач">
+                </div>
+                <div class="col-md-3">
+                    <label for="sort-filter" class="form-label">Сортувати</label>
+                    <select class="form-select" id="sort-filter">
+                        <option value="default">За замовчуванням</option>
+                        <option value="price-asc">Від дешевих до дорогих</option>
+                        <option value="price-desc">Від дорогих до дешевих</option>
+                        <option value="name">За назвою</option>
+                    </select>
+                </div>
+                <div class="col-md-1 d-grid">
+                    <button type="button" class="btn btn-outline-secondary" id="reset-filters" title="Скинути фільтри">
+                        <i class="bi bi-x-circle"></i>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Список курсів -->
+            <div class="row g-4" id="courses-list">
+                <!-- Курси будуть завантажені через JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <div class="container">
+            <div class="row mb-3">
+                <div class="col-md-4 mb-2">
+                    <h6 class="fw-bold">Про школу</h6>
+                    <p class="small text-white-50 mb-0">Онлайн заняття, підготовка до ЗНО та підтримка в навчанні.</p>
+                </div>
+                <div class="col-md-4 mb-2">
+                    <h6 class="fw-bold">Контакти</h6>
+                    <p class="small text-white-50 mb-0"><i class="bi bi-telephone"></i> +38 (050) 123-45-67</p>
+                    <p class="small text-white-50 mb-0"><i class="bi bi-envelope"></i> hello@dop.zanyattya.ua</p>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="fw-bold">Слідкуйте</h6>
+                    <div class="d-flex gap-2 justify-content-center justify-content-md-start">
+                        <a href="#" class="btn btn-outline-light btn-sm"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="btn btn-outline-light btn-sm"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="btn btn-outline-light btn-sm"><i class="bi bi-telegram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-white-50 small">&copy; 2025 Доп.Заняття. Всі права захищені.</div>
+        </div>
+    </footer>
+
+    <!-- Відгуки (також на сторінці Курси) -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5 fw-bold">Відгуки студентів</h2>
+            <div class="swiper reviewsSwiper" style="max-width: 1400px; width: 95%; margin: 0 auto;">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body">
+                                <div class="d-flex gap-1 mb-3">
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                </div>
+                                <p class="card-text mb-3">"Допомогли підготуватися до ЗНО — зрозуміла подача та практичні завдання."</p>
+                                <h6 class="card-title fw-bold mb-1">Олександра, 12 клас</h6>
+                                <small class="text-muted">Підготувала іспит з математики</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body">
+                                <div class="d-flex gap-1 mb-3">
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                </div>
+                                <p class="card-text mb-3">"Чудовий репетитор з англійської — покращив розмовну практику за 2 місяці."</p>
+                                <h6 class="card-title fw-bold mb-1">Максим</h6>
+                                <small class="text-muted">Курс: Розмовна англійська</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body">
+                                <div class="d-flex gap-1 mb-3">
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                </div>
+                                <p class="card-text mb-3">"Зручно: заняття онлайн, матеріали в записі, можна повторити лекцію."</p>
+                                <h6 class="card-title fw-bold mb-1">Наталя</h6>
+                                <small class="text-muted">Курс: Підготовка до контрольних</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Скрипти -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="scripts/cart.js"></script>
+    <script src="scripts/products.js"></script>
+    <script>
+        // Ініціалізація Swiper для відгуків на сторінці Курси
+        if (typeof Swiper !== 'undefined') {
+            new Swiper('.reviewsSwiper', {
+                slidesPerView: 1,
+                spaceBetween: 20,
+                loop: true,
+                autoplay: { delay: 4000, disableOnInteraction: false },
+                breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } },
+                pagination: { el: '.reviewsSwiper .swiper-pagination', clickable: true }
+            })
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Онлайн курси - Головна</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top fade-in">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <i class="bi bi-mortarboard"></i> Доп.Заняття
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="index.html">Головна</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="courses.html">Курси</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="schedule.html"><i class="bi bi-calendar3"></i> Розклад</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="profile.html"><i class="bi bi-person-circle"></i> Мій кабінет</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="cart.html"><i class="bi bi-journal-check"></i> Записи <span class="badge bg-danger" id="cart-count">0</span></a>
+                        </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="hero-section" style="background: linear-gradient(rgba(6, 60, 100, 0.6), rgba(6, 60, 100, 0.6)), url('https://images.unsplash.com/photo-1532619377-7d3f1b0c8e5d?w=1200&h=600&fit=crop') center/cover no-repeat; min-height: 520px; display: flex; align-items: center; color: white;">
+        <div class="container text-center fade-in">
+            <h1 class="display-4 fw-bold mb-3 fade-in">Онлайн заняття. Додаткова допомога з предметів</h1>
+            <p class="lead fs-5 mb-4">Індивідуальні та групові уроки — репетиції, підготовка до іспитів, підтримка в домашніх завданнях.</p>
+            <div class="d-flex gap-3 justify-content-center">
+                <a href="courses.html" class="btn btn-light btn-lg text-primary fade-in">
+                    <i class="bi bi-journal-bookmark"></i> Переглянути курси
+                </a>
+                <a href="schedule.html" class="btn btn-outline-light btn-lg fade-in">
+                    <i class="bi bi-clock"></i> Розклад занять
+                </a>
+            </div>
+            <p class="mt-4 small text-white-50">Почни вже сьогодні — перше заняття зі знижкою</p>
+        </div>
+    </section>
+    <section id="advantages" class="py-5 bg-light">
+        <div class="container fade-in">
+            <h2 class="text-center mb-5 fw-bold fade-in">Що ви отримуєте</h2>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="text-center p-4 h-100 border-0">
+                        <div class="mb-3">
+                            <i class="bi bi-calendar-check text-primary bounce-in" style="font-size: 3rem;"></i>
+                        </div>
+                        <h5 class="fw-bold">Гнучкий графік</h5>
+                        <p class="text-muted">Запишіться на зручний час — онлайн уроки у вечірній або вихідний час</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="text-center p-4 h-100 border-0">
+                        <div class="mb-3">
+                            <i class="bi bi-person-badge text-success bounce-in" style="font-size: 3rem;"></i>
+                        </div>
+                        <h5 class="fw-bold">Досвідчені викладачі</h5>
+                        <p class="text-muted">Кваліфіковані репетитори з практикою роботи з учнями</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="text-center p-4 h-100 border-0">
+                        <div class="mb-3">
+                            <i class="bi bi-award text-info bounce-in" style="font-size: 3rem;"></i>
+                        </div>
+                        <h5 class="fw-bold">Сертифікат по завершенню</h5>
+                        <p class="text-muted">Офіційний сертифікат або звіт по проходженню курсу</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="text-center p-4 h-100 border-0">
+                        <div class="mb-3">
+                            <i class="bi bi-chat-dots text-warning bounce-in" style="font-size: 3rem;"></i>
+                        </div>
+                        <h5 class="fw-bold">Підтримка та зворотний зв'язок</h5>
+                        <p class="text-muted">Консультації між заняттями та допомога з домашніми завданнями</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Популярні курси -->
+    <section class="py-5">
+        <div class="container fade-in">
+            <h2 class="text-center mb-4 fw-bold fade-in">Популярні курси</h2>
+            <div class="swiper courses-swiper" style="padding-bottom: 1rem;">
+                <div class="swiper-wrapper" id="courses-list">
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Swiper з відгуками -->
+    <section class="py-5 bg-light">
+        <div class="container fade-in">
+            <h2 class="text-center mb-5 fw-bold fade-in">Відгуки студентів</h2>
+            <div class="swiper reviewsSwiper" style="max-width: 1400px; width: 95%; margin: 0 auto;">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body">
+                                <div class="d-flex gap-1 mb-3">
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                </div>
+                                <p class="card-text mb-3">"Допомогли підготуватися до ЗНО — зрозуміла подача та практичні завдання."</p>
+                                <h6 class="card-title fw-bold mb-1">Олександра, 11 клас</h6>
+                                <small class="text-muted">Підготувала іспит з математики</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body">
+                                <div class="d-flex gap-1 mb-3">
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                </div>
+                                <p class="card-text mb-3">"Чудовий репетитор з англійської — покращив розмовну практику за 2 місяці."</p>
+                                <h6 class="card-title fw-bold mb-1">Максим</h6>
+                                <small class="text-muted">Курс: Розмовна англійська</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body">
+                                <div class="d-flex gap-1 mb-3">
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                </div>
+                                <p class="card-text mb-3">"Зручно: заняття онлайн, матеріали в записі, можна повторити лекцію."</p>
+                                <h6 class="card-title fw-bold mb-1">Наталя</h6>
+                                <small class="text-muted">Курс: Підготовка до контрольних</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body">
+                                <div class="d-flex gap-1 mb-3">
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                </div>
+                                <p class="card-text mb-3">"Дуже задоволений результатами. Хорошо пояснює складні теми програмування."</p>
+                                <h6 class="card-title fw-bold mb-1">Іван</h6>
+                                <small class="text-muted">Курс: Python базовий</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body">
+                                <div class="d-flex gap-1 mb-3">
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                </div>
+                                <p class="card-text mb-3">"Репетиторка з фізики дуже терпелива і показала мені, як розв'язувати складні задачі."</p>
+                                <h6 class="card-title fw-bold mb-1">Марія, 10 клас</h6>
+                                <small class="text-muted">Курс: Фізика - контрольні</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body">
+                                <div class="d-flex gap-1 mb-3">
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                </div>
+                                <p class="card-text mb-3">"Вчиться онлайн тут супер! Викладачі завжди готові дати додаткові матеріали."</p>
+                                <h6 class="card-title fw-bold mb-1">Анна</h6>
+                                <small class="text-muted">Курс: Українська література</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body">
+                                <div class="d-flex gap-1 mb-3">
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                </div>
+                                <p class="card-text mb-3">"Індивідуальні заняття з математики змінили мою оцінку з 3 на 4+."</p>
+                                <h6 class="card-title fw-bold mb-1">Петро</h6>
+                                <small class="text-muted">Курс: Математика 1 на 1</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body">
+                                <div class="d-flex gap-1 mb-3">
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                </div>
+                                <p class="card-text mb-3">"Хімія вже не така страшна! Дякую викладачу за цікаві пояснення органіки."</p>
+                                <h6 class="card-title fw-bold mb-1">Влада</h6>
+                                <small class="text-muted">Курс: Органічна хімія</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="bg-dark text-white py-5 mt-5">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-md-3 mb-4 mb-md-0">
+                    <h6 class="fw-bold mb-3">Про школу</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white-50 text-decoration-none">Про нас</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Наші викладачі</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Партнери</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4 mb-md-0">
+                    <h6 class="fw-bold mb-3">Курси</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="courses.html" class="text-white-50 text-decoration-none">Математика</a></li>
+                        <li><a href="courses.html" class="text-white-50 text-decoration-none">Англійська</a></li>
+                        <li><a href="courses.html" class="text-white-50 text-decoration-none">Фізика</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4 mb-md-0">
+                    <h6 class="fw-bold mb-3">Контакти</h6>
+                    <ul class="list-unstyled">
+                        <li class="text-white-50"><i class="bi bi-telephone"></i> +38 (050) 123-45-67</li>
+                        <li class="text-white-50"><i class="bi bi-envelope"></i> hello@dop.zanyattya.ua</li>
+                        <li class="text-white-50"><i class="bi bi-geo-alt"></i> Онлайн школа — Україна</li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h6 class="fw-bold mb-3">Слідкуйте</h6>
+                    <div class="d-flex gap-2">
+                        <a href="#" class="btn btn-outline-light btn-sm"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="btn btn-outline-light btn-sm"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="btn btn-outline-light btn-sm"><i class="bi bi-telegram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="bg-white-50">
+            <div class="text-center text-white-50">
+                <p class="mb-0">&copy; 2025 Доп.Заняття. Всі права захищені.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="scripts/cart.js"></script>
+    <script src="scripts/products.js"></script>
+    <script src="scripts/script.js"></script>
+    <script>
+        // Надійна ініціалізація Swiper для відгуків — автоскрол + спостереження + оновлення при зміні виду
+        (function() {
+            if (typeof Swiper === 'undefined') return
+
+            let reviewsSwiper = null
+
+            function createReviewsSwiper() {
+                try {
+                    // Якщо вже створений — оновлюємо
+                    if (reviewsSwiper) {
+                        try { reviewsSwiper.destroy(true, true) } catch(e) {}
+                        reviewsSwiper = null
+                    }
+
+                    reviewsSwiper = new Swiper('.reviewsSwiper', {
+                        slidesPerView: 1,
+                        spaceBetween: 20,
+                        loop: true,
+                        autoplay: { delay: 4000, disableOnInteraction: false },
+                        pagination: { el: '.reviewsSwiper .swiper-pagination', clickable: true },
+                        navigation: { nextEl: '.reviewsSwiper .swiper-button-next', prevEl: '.reviewsSwiper .swiper-button-prev' },
+                        breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } },
+                        lazy: { loadPrevNext: true },
+                        observer: true,
+                        observeParents: true,
+                        // трішки підвищує чутливість при drag
+                        touchRatio: 1,
+                        simulateTouch: true
+                    })
+
+                    // Коли все готово — гарантуємо оновлення
+                    setTimeout(() => { try { reviewsSwiper.update() } catch(e){} }, 200)
+                    setTimeout(() => { try { reviewsSwiper.update() } catch(e){} }, 800)
+                } catch (e) {
+                    console.warn('reviewsSwiper create error:', e)
+                }
+            }
+
+            // Ініціалізуємо при load (щоб зображення та шрифти вплинули на розміри до розрахунку)
+            if (document.readyState === 'complete') {
+                createReviewsSwiper()
+            } else {
+                window.addEventListener('load', createReviewsSwiper)
+            }
+
+            // Додаткові заходи: оновлення при resize/visibilitychange
+            window.addEventListener('resize', function() { try { if (reviewsSwiper) reviewsSwiper.update() } catch(e){} })
+            document.addEventListener('visibilitychange', function() { if (!document.hidden) { try { if (reviewsSwiper) reviewsSwiper.update() } catch(e){} } })
+        })()
+    </script>
+</body>
+</html>

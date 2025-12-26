@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Деталі курсу — Доп.Заняття</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <!-- Навігація -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <i class="bi bi-mortarboard"></i> Доп.Заняття
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Головна</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="courses.html">Курси</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="schedule.html">
+                            <i class="bi bi-calendar3"></i> Розклад
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile.html">
+                            <i class="bi bi-person-circle"></i> Мій кабінет
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html">
+                            <i class="bi bi-cart3"></i> Записи
+                            <span class="badge bg-danger" id="cart-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Деталі курсу -->
+    <section class="py-5">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Головна</a></li>
+                    <li class="breadcrumb-item"><a href="courses.html">Курси</a></li>
+                    <li class="breadcrumb-item active" id="breadcrumb-title">Деталі курсу</li>
+                </ol>
+            </nav>
+
+            <div class="row" id="product-details">
+                <!-- Деталі курсу будуть додані через JavaScript -->
+                <!-- Якщо JS вимкнено — показати базову заглушку -->
+                <div class="col-md-5">
+                    <!-- Карусель зображень курсу -->
+                    <div class="swiper productImagesSwiper mb-3">
+                        <div class="swiper-wrapper">
+                            <!-- slides будуть заповнені через product.js -->
+                        </div>
+                        <div class="swiper-pagination"></div>
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
+                    </div>
+
+                    <div class="card mt-4 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="bi bi-info-circle"></i> Про курс</h5>
+                            <ul class="list-unstyled mb-0">
+                                <li class="mb-2"><i class="bi bi-check-circle text-success"></i> <strong>Рівень:</strong> Поглиблений</li>
+                                <li class="mb-2"><i class="bi bi-check-circle text-success"></i> <strong>Тривалість:</strong> 40 год</li>
+                                <li class="mb-2"><i class="bi bi-check-circle text-success"></i> <strong>Формат:</strong> Онлайн</li>
+                                <li class="mb-2"><i class="bi bi-check-circle text-success"></i> <strong>Викладач:</strong> Іван Петров</li>
+                                <li><i class="bi bi-check-circle text-success"></i> <strong>Сертифікат:</strong> так</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <h1 class="mb-3" id="product-title">Інтенсив: Підготовка до ЗНО з математики</h1>
+                    
+                    <div class="d-flex gap-2 mb-3 flex-wrap">
+                        <span class="badge bg-primary" id="category-badge">Математика</span>
+                        <span class="badge bg-info" id="level-badge">Поглиблений</span>
+                    </div>
+
+                    <p class="lead mb-4" id="product-description">
+                        Практичні заняття, розбір тестових задач, домашні завдання з перевіркою. Підтримка викладача між заняттями.
+                    </p>
+
+                    <div class="card mb-4 shadow-sm border-success">
+                        <div class="card-body">
+                            <h2 class="text-primary mb-4" id="product-price">2 400 грн</h2>
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-success btn-lg add-to-cart-btn" id="add-to-cart-btn">
+                                    <i class="bi bi-journal-check"></i> Записатися на курс
+                                </button>
+                                <a href="courses.html" class="btn btn-outline-secondary">
+                                    <i class="bi bi-arrow-left"></i> Повернутися до каталогу курсів
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="bi bi-book"></i> Детальний опис</h5>
+                            <p class="mb-0" id="full-description">
+                                Вичерпний опис курсу буде завантажено з сервера...
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="card mt-3 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="bi bi-person"></i> Викладач</h5>
+                            <p class="mb-0" id="teacher-name">Іван Петров</p>
+                            <small class="text-muted">Досвід викладання: більше 10 років</small>
+                        </div>
+                    </div>
+
+                    <div class="card mt-3 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="bi bi-telephone"></i> Питання?</h5>
+                            <p class="mb-1"><i class="bi bi-envelope"></i> hello@dop.zanyattya.ua</p>
+                            <p class="mb-0"><i class="bi bi-telephone"></i> +38 (050) 123-45-67</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <div class="container">
+            <div class="row mb-3">
+                <div class="col-md-4 mb-2">
+                    <h6 class="fw-bold">Про школу</h6>
+                    <p class="small text-white-50 mb-0">Онлайн заняття, підготовка до ЗНО та підтримка в навчанні.</p>
+                </div>
+                <div class="col-md-4 mb-2">
+                    <h6 class="fw-bold">Контакти</h6>
+                    <p class="small text-white-50 mb-0"><i class="bi bi-telephone"></i> +38 (050) 123-45-67</p>
+                    <p class="small text-white-50 mb-0"><i class="bi bi-envelope"></i> hello@dop.zanyattya.ua</p>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="fw-bold">Слідкуйте</h6>
+                    <div class="d-flex gap-2 justify-content-center justify-content-md-start">
+                        <a href="#" class="btn btn-outline-light btn-sm"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="btn btn-outline-light btn-sm"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="btn btn-outline-light btn-sm"><i class="bi bi-telegram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-white-50 small">&copy; 2025 Доп.Заняття. Всі права захищені.</div>
+        </div>
+    </footer>
+
+    <!-- Скрипти -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="scripts/cart.js"></script>
+    <script src="scripts/product.js"></script>
+</body>
+</html>
